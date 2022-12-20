@@ -29,11 +29,11 @@ def comprobarAutenticacion(username, passw):
         sentencia = "SELECT * FROM USUARIO WHERE USERNAME = ? AND PASSWORD = ?"
         cursor.execute(sentencia,(username, passw))
         if(len(cursor.fetchall())==0):
-            print("Usuario no encóntrádo.")
+            print("Usuario no encontrado.")
             conexion.commit()
             return 0
         else:
-            print("Usuarió auténticádo.")
+            print("Usuario autenticado.")
             conexion.commit()
             return 1
     except Exception as ex:
