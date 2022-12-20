@@ -33,7 +33,7 @@ def comprobarAutenticacion(username, passw):
             conexion.commit()
             return 0
         else:
-            print("Usuarió auténticado.")
+            print("Usuarió auténticádo.")
             conexion.commit()
             return 1
     except Exception as ex:
