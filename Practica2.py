@@ -1,12 +1,13 @@
 import sqlite3
 
-
+try:
         conexion = sqlite3.connect("database.sqlite3")
         cursor = conexion.cursor()
 except Exception as ex:
         print(ex)
 
 def creaDB():
+    try:
         cursor.execute("CREATE TABLE IF NOT EXISTS USUARIO (USERNAME TEXT NOT NULL, PASSWORD TEXT NOT NULL,CONSTRAINT PK_USUARIO PRIMARY KEY (USERNAME))")
         cursor.execute("CREATE TABLE IF NOT EXISTS PROBLEMA (DESCRIPCION TEXT NOT NULL, USUARIO TEXT NOT NULL, ESTADO TEXT NOT NULL, CONSTRAINT PK_PROBLEMA PRIMARY KEY (DESCRIPCION), CONSTRAINT PK_PROBLEMA FOREIGN KEY (USUARIO) REFERENCES USUARIO(USERNAME))")
         cursor.execute("CREATE TABLE IF NOT EXISTS COMENTARIO (CONTENIDO TEXT NOT NULL, PROBLEMA TEXT NOT NULL, CONSTRAINT PK_COMENTARIO PRIMARY KEY (CONTENIDO), CONSTRAINT PK_COMENTARIO FOREIGN KEY (PROBLEMA) REFERENCES PROBLEMA(DESCRIPCION))")
@@ -15,6 +16,7 @@ def creaDB():
 
 
 def insertarUsuario(username, passw):
+    try:
         sentencia = "INSERT INTO USUARIO('USERNAME', 'PASSWORD') VALUES(?, ?)"
         cursor.execute(sentencia,(username, passw))
         print("Usuario registrado correctamente.")
@@ -23,7 +25,7 @@ def insertarUsuario(username, passw):
         print(ex)
 
 def comprobarAutenticacion(username, passw):
-    t
+    try:
         sentencia = "SELECT * FROM USUARIO WHERE USERNAME = ? AND PASSWORD = ?"
         cursor.execute(sentencia,(username, passw))
         if(len(cursor.fetchall())==0):
@@ -106,7 +108,7 @@ def insertarComentario(comentario, nombre):
         conexion.commit()
     except Exception as ex:
         print(ex)
-
+"""
 creaDB()
 print("Bienvenido a GitBit, seleccione la acción a realizar: ")
 print("1 - Registro")
@@ -162,4 +164,4 @@ while activo == 1:
         reabreIssue(username, nombre)
     if(entrada == 6):
         print("Salió de la aplicación. Buen día!")
-        activo = 0
+        activo = 0"""
